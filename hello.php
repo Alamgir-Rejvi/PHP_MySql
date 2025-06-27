@@ -9,3 +9,11 @@ echo "Hello World! </br>";
 echo "Hello World! </br>"; */ 
 
 ?>
+
+
+<!-- php declaration: <?= $a.$b.""."!"?> -->
+<?php
+$a = "hi ";
+$b = "I'm Rejvi";
+?>
+<?= $a.$b.""."!"?>
