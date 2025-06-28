@@ -1,4 +1,10 @@
  <h3>Construct Method</h3>
+ <h4>Syntax :</h4>
+ <p>function __construct() {
+    // Initialize the object properties 
+} <br> It is defined inside the class and is used to automatically call when the object is created.</p> <br>
+
+
 <?php
     // construct method
     class Person {
@@ -36,4 +42,18 @@
     $A-> dis();
     echo "<br>";
     $B-> dis();
+    ?>
+
+
+    
+    <?php
+    // Constructor without parameter:
+    class Student {
+        function __construct() {
+            print "This is __construct without parameter\n";
+            print "Welcome To GeeksforGeek";
+        }
+    }
+
+    $obj = new Student();
     ?>
