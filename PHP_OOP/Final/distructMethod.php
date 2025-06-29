@@ -10,6 +10,10 @@ This method works exactly the opposite of the __construct method in PHP.
 __destruct gets called automatically at the end of the script.
 __destruct() method starts with two underscores (__).
 It is used to de-initialize existing objects.  </pre></p> <br> <br>
+
+
+
+
 <?php
 class Des {
     function __construct () {
