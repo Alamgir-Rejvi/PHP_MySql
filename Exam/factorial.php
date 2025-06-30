@@ -12,7 +12,7 @@
         <input type="submit" value = "Calculate">
     </form>
 
-    <?php
+    <!-- <?php
     if ($_POST) {
         $fact = 1;
         $num = $_POST['number'];
@@ -22,7 +22,7 @@
         $fact = $fact * $i;
         echo "Factorial result: " . $fact;
     }
-    ?>
-    
+    ?> -->
+
 </body>
 </html>

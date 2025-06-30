@@ -1,38 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <form action="#" method ="post">
-        <label for="number">Input Number :</label>
-        <input type="number" name = "number">
-        <input type="submit" name = "submit">
-    </form>
+<form method = "post">
+    <label for="number">Input a number</label>
+    <input type="text" name = "number">
+    <input type="submit" name = "submit">
+</form>
+<?php
 
-    <?php
-    $collect = ($_POST["number"]);
-    $itit = 0;
-    if ($_POST["submit"]) {
-        if ($itit == 0 || $itit == 1) {
-            echo "This is not a prime number or composite";
-            exit;
+$collect = ($_POST["number"]); // To store the inputed number in a variable;
+
+$is_numeric = "true"; // to check validation of number or not number;
+if (!is_numeric($collect)) {
+    echo "Please enter a valid number.";
+    exit();
+}
+
+$init = 0; // This will be used to check if a divisor is found.
+if ($_POST["submit"]){ // Checks if the form has been submitted;
+    if ($collect <= 1){
+        echo "The number is not a Prime or Composite";
+        exit();
+    }
+    
+    for ($i = 2; $i < $collect; $i ++){ // to check if $collect is divisible by any number in this range.
+        if ($collect % $i == 0){
+            $init ++;
+            break;
         }
-        for ($i = 2; $i < $itit; $i ++){
-            if ($itit % $i == 0){
-                $c ++;
-                break;
-            }
-    }
-    if ($c == 0)
-        echo "$itit is a Prime number";
-        else
-        echo "$itit is Not a Prime number";
     }
 
-    ?>
-
-</body>
-</html>
+    //  If $init == 0, no divisors were found during the loop ⇒ $collect is Prime. Otherwise $collect is Not Prime.
+    if ($init == 0) { 
+        
+        echo "$collect is a Prime number";
+    }else {
+        echo "$collect is Not a prime number";
+    }
+}
+?>
