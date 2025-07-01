@@ -21,7 +21,7 @@ class A {
 class B extends A {
     public $college = "Jamea";
     public $university = "University of Chittagong";
-    public function dis () {
+    public function display () {
         echo "<h3>My Detail </h3>";
         echo "<h4> My name is : $this->name; <br> Age is :$this->age; <br> Salary is :$this->salary. </h4>";
         echo "My college :" .$this->college ."<br>University :" .$this->university;
@@ -29,4 +29,5 @@ class B extends A {
 }
 $obj = new B ("Alamgir",28,"20000");
 $obj-> dis();
+echo $obj -> display();
 ?>
