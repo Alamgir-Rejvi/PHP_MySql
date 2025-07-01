@@ -36,3 +36,9 @@ if ($_POST["submit"]){ // Checks if the form has been submitted;
     }
 }
 ?>
+
+
+<?php
+$state = array ("Karnataka", "Goa", "Tamil Nadu","Andhra Pradesh");
+echo (array_search ("Tamil Nadu",$state));
+?>
