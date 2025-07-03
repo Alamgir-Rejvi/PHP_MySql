@@ -1,16 +1,21 @@
+<h3> Even or Odd</h3>
 <form method  = "post">
-    <input type="number" name  ="num" placeholder = "Input number" require>;
-    <input type="submit" value ="Submit">
+    <label for="input">Input a Number</label>
+    <input type="number" name = "input" placeholder ="Input"require>
+    <input type="submit" name = "submit" value = "Submit">
 </form>
 
 <?php
-if ($_POST) {
-    $input = (int) $_POST['num'];
+if (isset($_POST ["submit"])) {
+    $collect = (int)$_POST['input'];
 
-    if($input % 2 === 0){
-        echo $input. " is an Even Number";
-    }else{
-        echo $input . " is an Odd Number";
+    if ($collect === 0 || $collect === 1) {
+        echo $collect . " is not even or odd";
+    }
+    elseif ($collect % 2 == 0) {
+        echo $collect . " is an even number";
+    } else {
+        echo $collect . " is an odd number";
     }
 }
 ?>
