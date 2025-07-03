@@ -15,7 +15,7 @@
 
 
     <?php
-    if ($_POST) {
+    if (isset($_POST["submit"])) {
         $a = $_POST['num1'];
         $b = $_POST['num2'];
         $c = $_POST['num3'];
