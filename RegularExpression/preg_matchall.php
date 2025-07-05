@@ -8,3 +8,24 @@ $p = "/is/i";
 
 echo preg_match_all($p,$a); // output will be 1 (if match) or 0 (if not match);
 ?>
+
+
+<!-- use of or -->
+ <?php
+$str = "The rain in SPAIN falls mainly  the plains.";
+$pattern = "/in | the /i";
+
+$show =  preg_match_all($pattern,$str); // output will be 1 (if match) or 0 (if not match);
+print_r($show);
+?>
+
+
+
+
+ <?php
+$str = "The rain in SPAIN falls mainly  the plains.";
+$pattern = "/[^in]/i";
+
+$show =  preg_match_all($pattern,$str); // output 33
+print_r($show);
+?>
