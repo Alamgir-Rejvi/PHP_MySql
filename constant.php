@@ -2,7 +2,8 @@
 <!-- const declaration method: define()  function and const keyword -->
 
 <?php
-define("welcome", "You are welcome to PHP"); // define() function to create a constant
+// constant with define:
+define("welcome", "You are welcome to PHP"); // example of string datatype, define() function to create a constant
 echo welcome;
 echo"<br>";
 
@@ -22,6 +23,7 @@ function myTest() { // const with function
 myTest();
 
 
+// constant with const keyword :
 const identy = "Alamgir"; // const keyword
 echo identy;
 echo "<br>";

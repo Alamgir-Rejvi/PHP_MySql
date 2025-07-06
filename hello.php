@@ -16,4 +16,28 @@ echo "Hello World! </br>"; */
 $a = "hi ";
 $b = "I'm Rejvi";
 ?>
-<?= $a.$b.""."!"?>
+
+<?= $a.$b.""."!" # output : hi I'm Rejvi!
+
+?> 
+
+<?php
+ echo "<h3> Hi, World! </h3>"; // using HTML tag
+ 
+
+?>
+
+<?php
+    echo "Hi " , "I'm Alamgir"; // using comma to add two argument
+    echo "<br>";
+?>
+
+<?php
+     echo "Hi " . "I'm Rejvi"; //using concatention
+     echo "<br>";
+?>
+<?php
+    echo 454; // to print number (without string);
+?>
+
+<!-- we can use "print" to get output instead of "echo" but Print can not output with comma -->

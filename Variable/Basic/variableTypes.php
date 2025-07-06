@@ -74,7 +74,7 @@ echo "<br>";
 class Life {
     public $present = "nai"; //here "public" is a modifier, It can be accessed from anywhere (outside or inside the class)
 }
-$obj = new life(); // here class is called without parameters because the class has no constructor defined.
+$obj = new Life(); // here class is called without parameters because the class has no constructor defined.
 echo $obj->present;  // Outputs: nai
 echo "<br>";
 
