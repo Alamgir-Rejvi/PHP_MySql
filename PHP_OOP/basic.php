@@ -8,7 +8,7 @@
 <body>
     <?php
     class Fruit {
-        //
+        // property
         public $name = "Alamgir";
         public $id = "1288420";
 

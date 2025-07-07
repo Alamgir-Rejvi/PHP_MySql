@@ -53,14 +53,15 @@ class S {
         return self :: $name;
     }
     public static function show () {
-        return "this is static method...";
+        return "This is static method...";
     }
-    function applyStatic () {
+    static function applyStatic () {
         return self :: show(); // function is called in function;
     }
 }
-$show =  new S ();
-echo $show-> staticValue ();
-echo "<br>";
-echo $show-> applyStatic();
+echo S :: applyStatic();
+// $show =  new S ();
+// echo $show-> staticValue ();
+// echo "<br>";
+// echo $show-> applyStatic();
 ?>

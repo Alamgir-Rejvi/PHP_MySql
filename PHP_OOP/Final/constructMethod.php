@@ -50,7 +50,7 @@
     // Constructor without parameter:
     class Student {
         function __construct() {
-            print "This is __construct without parameter\n";
+            print "This is __construct without parameter \n";
             print "Welcome To GeeksforGeek";
         }
     }
