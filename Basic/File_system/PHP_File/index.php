@@ -1,6 +1,6 @@
 <?php
 
-    require("dataStorage.txt");
+    require("classForFile.php");
 
     if (isset ($_POST['submit'])){
         
@@ -11,11 +11,11 @@
         $pass = $_POST['p'];
 
 
-        echo "$name . <br>";
-        echo "$id . <br>";
-        echo "$contact . <br>";
-        echo "$email . <br>";
-        echo "$pass . <br>";
+        // echo $name . "<br>";
+        // echo "$id  <br>";
+        // echo $contact . "<br>";
+        // echo "$email <br>";
+        // echo "$pass <br>";
 
 
        // EMAIL VALIDATION 
@@ -36,9 +36,9 @@
         }
 
         // data store in text file
-        // $data = new File($name, $id,$contact, $email, $pass);
-        // $data -> dataStore();
-        // echo "Form Submit Successfully";
+        $data = new File($name, $id,$contact, $email, $pass);
+        $data -> dataStore();
+        echo "Form Submit Successfully";
 
 
     }
@@ -62,6 +62,10 @@
         Password:<input type="password" name = "p"><br><br>
         <input type="submit" name = "submit" value = "Submit">
     </form>
+
+    <?php
+    File::display_onscreen();
+    ?>
 </body>
 </html>
 
