@@ -28,6 +28,6 @@ class B extends A {
     }
 }
 $obj = new B ("Alamgir",28,"20000");
-$obj-> dis();
-echo $obj -> display();
+// $obj-> dis();
+$obj -> display();
 ?>
