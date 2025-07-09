@@ -23,7 +23,7 @@
 	  $students=file(self::$file_path);
       //The file() reads a file into an array.
 		
-		echo "<b>Name | ID | Contact | Email | Password f</b><br/>";
+		echo "<b>Name | ID | Contact | Email | Password </b><br/>";
 		foreach($students as $student){
 				   list($name, $id, $contact , $email, $pass)=explode(",",trim($student));
 				   echo "$name, $id, $contact , $email, $pass<br/>";
