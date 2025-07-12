@@ -32,8 +32,4 @@
   }
 
 }
-
-      // $data = new File($name, $id,$contact, $email, $pass);
-      // $data -> dataStore();
-      // echo "Form Submit Successfully";
 ?>
