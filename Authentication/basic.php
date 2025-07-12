@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,3 +43,17 @@
     ?>
 </body>
 </html>
+=======
+<?php
+
+if (!isset($_SERVER['PHP_AUTH_USER'])) {
+    header('WWW-Authenticate: Basic realm="My Realm"');
+    header('HTTP/1.0 401 Unauthorized');
+    echo 'Authentication required.';
+    exit;
+} else {
+    echo "Welcome, {$_SERVER['PHP_AUTH_USER']}.";
+}
+
+?>
+>>>>>>> 12cf755e18b0c2ea5b75052333ecf41f452f3a7c
