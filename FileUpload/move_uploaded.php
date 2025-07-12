@@ -7,6 +7,7 @@
 </head>
 
 <?php
+
 if(isset($_POST['submit'])) {
     $name = $_FILES['inputedFile']['name'];
     $tmp_name = $_FILES['inputedFile']['tmp_name'];
@@ -15,8 +16,6 @@ if(isset($_POST['submit'])) {
     move_uploaded_file($tmp_name,$media.$name);
     // copy($tmpFile,"media/".$name);
    }
-    
-    
 ?>
 
 

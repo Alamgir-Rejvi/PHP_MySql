@@ -15,7 +15,7 @@
 
         copy($tmpFile,"media/".$name);
 
-        echo "<br>";
+    echo "<br>";
     echo "File Name : " . $_FILES['inputedFile']['name'] ."<br>";
     echo "File Size : " . $_FILES['inputedFile']['size'] ."<br>";
     echo "File Type : " . $_FILES['inputedFile']['type'] ."<br>";
