@@ -37,3 +37,29 @@ if (!empty($errors)) {
     foreach ($errors as $e) echo "<p style='color:red;'>$e</p>";
 }
 ?>
+
+
+
+<!-- <?php
+if(isset($_POST['submit'])) {
+    $username = trim($_POST['username'] ?? '');
+    $password = trim ($_POST['password'] ?? '');
+    $errors = [];
+
+    // validation 
+    if (empty($username)) $errors [] = "Username is required";
+    if (empty($password)) $errors [] = "Password is required";
+    if (strlen($password) < 4) $errors = "Password must be at least four characters";
+
+
+    $users = file("users.txt", FILE_IGNORE_NEW_LINES);
+    foreach ($users as $user) {
+        list($saved_user, ) = explode ('|' , $user);
+        if ($saved_user === username) {
+            $errors [] = "username is already exists";
+            break;
+        }
+    }
+}
+
+?> -->
