@@ -43,7 +43,7 @@ class Student
 
         echo "<b>ID | Name | Email | Password</b><br/>";
         foreach ($students as $student) {
-            [$id, $name, $email, $password] = explode(",", $student);
+            list($id, $name, $email, $password) = explode(",", $student);
             echo htmlspecialchars("$id, $name, $email, $password") . "<br/>";
         }
     }
