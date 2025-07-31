@@ -1,34 +1,32 @@
 <?php
-// ---------- DATABASE CONNECTION ----------
-$conn = mysqli_connect("localhost", "root", "", "alibaba");
-if (!$conn) {
+$conn = mysqli_connect("localhost", "root","","alibaba");
+if(!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
 
 $manufacturer_list = [];
 $product_list = [];
 $manufacturer_table = [];
 
-// ---------- STEP 1: Load Manufacturer List ----------
+// load Manufacturer List 
 if ($result = mysqli_query($conn, "CALL get_all_manufacturers()")) {
-    while ($row = mysqli_fetch_assoc($result)) {
+    while($row = mysqli_fetch_assoc($result)) {
         $manufacturer_list[] = $row;
     }
     mysqli_free_result($result);
     mysqli_next_result($conn);
 }
 
-// ---------- STEP 2: Handle Form Submission ----------
+// Handle Form Submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // Insert Manufacturer
+    // Insert manufacturer
     if (isset($_POST['add_manufacturer'])) {
         $name = $_POST['manufacturer_name'];
         $address = $_POST['address'];
         $contact = $_POST['contact_no'];
 
-        if (!empty($name) && !empty($address) && !empty($contact)) {
+        if (!empty($name) && !empty($contact) && !empty($contact)) {
             $stmt = $conn->prepare("CALL insert_manufacturer(?, ?, ?)");
             $stmt->bind_param("sss", $name, $address, $contact);
             $stmt->execute();
@@ -69,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// ---------- STEP 3: Handle Product Deletion ----------
+// Handle Product Deletion
 if (isset($_GET['delete_id'])) {
     $id = intval($_GET['delete_id']);
     mysqli_query($conn, "CALL delete_product_by_id($id)");
@@ -78,7 +76,7 @@ if (isset($_GET['delete_id'])) {
     exit();
 }
 
-// ---------- STEP 4: Load Product List from VIEW ----------
+// Load Product List from VIEW
 if ($result = mysqli_query($conn, "SELECT * FROM view_all_products_only")) {
     while ($row = mysqli_fetch_assoc($result)) {
         $product_list[] = $row;
@@ -86,7 +84,7 @@ if ($result = mysqli_query($conn, "SELECT * FROM view_all_products_only")) {
     mysqli_free_result($result);
 }
 
-// ---------- STEP 5: Load Full Manufacturer Table ----------
+// Load Full Manufacturer Table
 if ($result = mysqli_query($conn, "SELECT * FROM manufacturer")) {
     while ($row = mysqli_fetch_assoc($result)) {
         $manufacturer_table[] = $row;
@@ -100,23 +98,76 @@ if ($result = mysqli_query($conn, "SELECT * FROM manufacturer")) {
 <head>
     <title>Manufacturer and Product Entry</title>
     <style>
-        body { font-family: Arial; background: #f9f9f9; }
-        .container { display: flex; justify-content: space-around; margin-top: 30px; flex-wrap: wrap; gap: 20px; }
-        .form-box { width: 45%; min-width: 350px; background: #fff; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-        h2, h3 { text-align: center; }
-        input, select { width: 100%; padding: 8px; margin: 8px 0; }
-        input[type=submit] { background: #4CAF50; color: white; border: none; cursor: pointer; font-weight: bold; }
-        input[type=submit]:hover { background: #45a049; }
-        table { margin: 30px auto; border-collapse: collapse; width: 95%; background: #fff; }
-        th, td { border: 1px solid #333; padding: 10px; text-align: center; }
-        th { background: #f0f0f0; }
+        body {
+            font-family: Arial;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        .row-container {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            gap: 20px;
+            padding: 20px;
+            justify-content: flex-start;
+        }
+
+        .form-box, .delete-form-box, .table-box {
+            flex: 0 0 350px;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            min-width: 350px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+        }
+
+        input[type=submit] {
+            background: #3a109bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        input[type=submit]:hover {
+            background: #45a049;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #f0f0f0;
+        }
     </style>
 </head>
 <body>
 
 <h2>Manufacturer & Product Management</h2>
 
-<div class="container">
+<div class="row-container">
     <!-- Manufacturer Form -->
     <div class="form-box">
         <h3>Add Manufacturer</h3>
@@ -136,7 +187,7 @@ if ($result = mysqli_query($conn, "SELECT * FROM manufacturer")) {
         <h3>Add Product</h3>
         <form method="post">
             <label>Product Name:</label>
-            <input type="text" name="product_name" required>
+            <input type="text" name="product_name" required>00
             <label>Price (must be > 5000):</label>
             <input type="number" name="price" required> 
             <label>Select Manufacturer:</label>
@@ -149,41 +200,45 @@ if ($result = mysqli_query($conn, "SELECT * FROM manufacturer")) {
             <input type="submit" name="add_product" value="Add Product">
         </form>
     </div>
+
+    <!-- Manufacturer Delete Form -->
+    <div class="delete-form-box">
+        <h3>Delete Manufacturer</h3>
+        <form method="post">
+            <label>Select Manufacturer:</label>
+            <select name="delete_manufacturer_id" required>
+                <option value="">-- Select Manufacturer --</option>
+                <?php foreach($manufacturer_list as $m): ?>
+                    <option value="<?= $m['id'] ?>"><?= $m['name'] ?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="submit" name="delete_manufacturer" value="Delete Manufacturer" style="margin-top: 10px;">
+        </form>
+    </div>
+
+    <!-- Product Table -->
+    <div class="table-box">
+        <h3>Product List</h3>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Manufacturer</th>
+                <th>Action</th>
+            </tr>
+            <?php foreach($product_list as $p): ?>
+            <tr>
+                <td><?= $p['id'] ?></td>
+                <td><?= $p['pname'] ?></td>
+                <td><?= $p['price'] ?></td>
+                <td><?= $p['manufacturer_name'] ?></td>
+                <td><a href="index.php?delete_id=<?= $p['id'] ?>" onclick="return confirm('Are you sure to delete this product?')">Delete</a></td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
 </div>
-
-<!-- Manufacturer Delete Form -->
-<h2>Delete Manufacturer</h2>
-<form method="post" style="width: 400px; margin: auto; background: #fff; padding: 20px; border-radius: 10px;">
-    <label>Select Manufacturer to Delete:</label>
-    <select name="delete_manufacturer_id" required>
-        <option value="">-- Select Manufacturer --</option>
-        <?php foreach($manufacturer_list as $m): ?>
-            <option value="<?= $m['id'] ?>"><?= $m['name'] ?></option>
-        <?php endforeach; ?>
-    </select>
-    <input type="submit" name="delete_manufacturer" value="Delete Manufacturer" style="margin-top: 10px;">
-</form>
-
-<!-- Product Table -->
-<h2>Product List (Price > 5000)</h2>
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Product Name</th>
-        <th>Price</th>
-        <th>Manufacturer</th>
-        <th>Action</th>
-    </tr>
-    <?php foreach($product_list as $p): ?>
-    <tr>
-        <td><?= $p['id'] ?></td>
-        <td><?= $p['pname'] ?></td>
-        <td><?= $p['price'] ?></td>
-        <td><?= $p['manufacturer_name'] ?></td>
-        <td><a href="index.php?delete_id=<?= $p['id'] ?>" onclick="return confirm('Are you sure to delete this product?')">Delete</a></td>
-    </tr>
-    <?php endforeach; ?>
-</table>
 
 <!-- Manufacturer Table -->
 <h2>All Manufacturers</h2>
