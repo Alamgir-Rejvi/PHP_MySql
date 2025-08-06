@@ -1,0 +1,209 @@
+// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+// Table : 1 ;
+Table users {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  email varchar(100) [not null, unique]
+  password varchar(255) [not null]
+  phone varchar(20)
+  address text
+  role enum('admin', 'customer', 'delivery') [default: 'customer']
+  status enum('active', 'inactive') [default: 'active']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+
+// Table : 2 ;
+Table restaurants {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  description text
+  location varchar(255)
+  owner_id int [not null]
+  phone varchar(20)
+  email varchar(100)
+  logo varchar(255)
+  status enum('active', 'inactive') [default: 'active']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'owner_id refers to the user who owns or manages this restaurant'
+}
+
+
+// Table : 3 ;
+Table categories {
+  id int [pk, increment]
+  name varchar(100)
+  created_at TIMESTAMP [DEFAULT: `CURRENT_TIMESTAMP`]
+}
+
+
+// Table : 4 ;
+Table sub_categories {
+  id int [pk, increment]
+  name varchar(100)
+  category_id int
+  Note: 'Linked to categories(id)'
+}
+Ref: sub_categories.category_id > categories.id
+
+
+// Table : 5 ;
+Table foods {
+  id int [pk, increment]
+  name varchar(100) [not null]
+  description text
+  price decimal(10,2) [not null]
+  image varchar(255)
+  available boolean [default: true]
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+  restaurant_id int [not null]
+  category_id int [not null]
+
+  Note: 'restaurant_id links to restaurants, category_id links to categories'
+}
+
+Ref: foods.restaurant_id > restaurants.id
+Ref: foods.category_id > categories.id
+
+
+// Table : 6 ;
+Table orders {
+  id int [pk, increment]
+  user_id int [not null]
+  restaurant_id int [not null]
+  status enum('pending', 'confirmed', 'preparing', 'on_the_way', 'delivered', 'cancelled') [default: 'pending']
+  total_price decimal(10,2) [not null]
+  order_time timestamp [default: `CURRENT_TIMESTAMP`]
+
+  Note: 'user_id links to users, restaurant_id links to restaurants'
+}
+
+Ref: orders.user_id > users.id
+Ref: orders.restaurant_id > restaurants.id
+
+
+// Table : 7 ;
+Table order_items {
+  id int [pk, increment]
+  order_id int [not null]
+  food_id int [not null]
+  quantity int [not null, default: 1]
+  price DECIMAL(10,2) [not null]
+  Note: 'Links each food item to an order'
+}
+
+Ref: order_items.order_id > orders.id
+Ref: order_items.food_id > foods.id
+
+
+// Table : 8 ;
+Table coupons {
+  id int [pk, increment]
+  code varchar(50) [unique]
+  discount_type enum('percentage', 'fixed')  // e.g., 20% off or $5 off
+  discount_value decimal(10,2)
+  min_order_amount decimal(10,2)
+  valid_from date
+  valid_to date
+  usage_limit int // total times a coupon can be used
+  status enum('active', 'inactive') [default: 'active']
+}
+
+// Table : 9 ;
+Table coupon_usage {
+  id int [pk, increment]
+  coupon_id int
+  user_id int
+  order_id int
+  used_at datetime
+
+  Note: 'Tracks each time a coupon is used'
+}
+
+Ref: coupon_usage.coupon_id > coupons.id
+Ref: coupon_usage.user_id > users.id
+Ref: coupon_usage.order_id > orders.id
+
+
+// Table : 10 ;
+Table deliveries {
+  id int [pk, increment]
+  order_id int
+  delivery_man_id int
+  status enum('pending', 'in_progress', 'delivered', 'cancelled') [default: 'pending']
+  delivery_time datetime
+
+  Note: 'order_id → orders(id), delivery_man_id → delivery_men(id)'
+}
+
+Ref: delivery_profiles.delivery_man_id > delivery_men.id
+Ref: deliveries.delivery_man_id > delivery_men.id
+Ref: deliveries.order_id > orders.id
+
+
+
+// Table : 11 ;
+Table delivery_men {
+  id int [pk, increment]
+  name varchar(100)
+  email varchar(100) [unique]
+  password varchar(255)
+  status enum('active', 'inactive') [default: 'active']
+  created_at timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+
+
+// Table : 12 ;
+Table delivery_profiles {
+  id int [pk, increment]
+  delivery_man_id int
+  phone varchar(20)
+  address text
+  national_id varchar(30)
+  profile_photo varchar(255)
+
+  Note: 'Linked to delivery_men(id)'
+}
+
+
+
+// Table : 13 ;
+Table payments {
+  id int [pk, increment]
+  order_id int [not null, ref: > orders.id]
+  payment_method payment_method_enum
+  payment_status payment_status_enum [default: 'unpaid']
+  payment_time datetime
+}
+Enum payment_method_enum {
+  cash_on_delivery
+  online
+}
+
+Enum payment_status_enum {
+  paid
+  unpaid
+}
+
+
+
+// Table : 14 ;
+Table reviews {
+  id int [pk, increment]
+  order_id int [not null, ref: > orders.id, note: 'ON DELETE CASCADE']
+  user_id int [not null, ref: > users.id]
+  rating int [note: '1 to 5 only']
+  comment text
+  review_time timestamp [default: `CURRENT_TIMESTAMP`]
+}
+
+
+
+
+
+
+
