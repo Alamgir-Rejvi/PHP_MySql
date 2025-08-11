@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <button id="hide">Click for hide odd rows</button>
+    <button id="show">Click for hide even rows</button>
+    <button id="t">Click for toggle table</button>
+
+    <table border="1" style="width: 300px;">
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Address</th>
+      </tr>
+      <tr>
+        <td>odd</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+        <td>e</td>
+      </tr>
+      <tr>
+        <td>f</td>
+        <td>g</td>
+        <td>h</td>
+        <td>i</td>
+        <td>j</td>
+      </tr>
+      <tr>
+        <td>odd</td>
+        <td>g</td>
+        <td>h</td>
+        <td>i</td>
+        <td>j</td>
+      </tr>
+      <tr>
+        <td>f</td>
+        <td>g</td>
+        <td>h</td>
+        <td>i</td>
+        <td>j</td>
+      </tr>
+      <tr>
+        <td>odd</td>
+        <td>g</td>
+        <td>h</td>
+        <td>i</td>
+        <td>j</td>
+      </tr>
+    </table>
+
+    <script>
+      $(document).ready(function(){
+        
+        // Hide odd rows
+        $("#hide").click(function(){
+          $("tr:odd").hide(2000);
+        });
+
+        // Hide even rows
+        $("#show").click(function(){
+          $("tr:even").hide(2000);
+        });
+
+        // Toggle whole table
+        $("#t").click(function(){
+          $("table").toggle(2000);
+        });
+
+      });
+    </script>
+</body>
+</html>
