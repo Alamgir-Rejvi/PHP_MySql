@@ -1,9 +1,11 @@
-<!--  Author Name: MH RONY.
-                        GigHub Link: https://github.com/dev-mhrony
-                        Facebook Link:https://www.facebook.com/dev.mhrony
-                        Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-                        for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com  
-                        Visit My Website : developerrony.com -->
+<?php
+include("connection/connect.php"); 
+error_reporting(0); 
+session_start(); 
+$message = '';
+$success = '';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,12 +27,7 @@
     }
     </style>
 
-    <!--  Author Name: MH RONY.
-                        GigHub Link: https://github.com/dev-mhrony
-                        Facebook Link:https://www.facebook.com/dev.mhrony
-                        Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-                        for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com  
-                        Visit My Website : developerrony.com -->
+
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -40,12 +37,7 @@
     <link href="css/style.css" rel="stylesheet">
 
 </head>
-<!--  Author Name: MH RONY.
-                        GigHub Link: https://github.com/dev-mhrony
-                        Facebook Link:https://www.facebook.com/dev.mhrony
-                        Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-                        for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com  
-                        Visit My Website : developerrony.com -->
+
 
 <body>
     <header id="header" class="header-scroll top-header headrom">
@@ -73,12 +65,7 @@
 							}
 
 						?>
-                        <!--  Author Name: MH RONY.
-                        GigHub Link: https://github.com/dev-mhrony
-                        Facebook Link:https://www.facebook.com/dev.mhrony
-                        Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-                        for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com  
-                        Visit My Website : developerrony.com -->
+                       
 
                     </ul>
                 </div>
@@ -88,20 +75,19 @@
     <div style=" background-image: url('images/img/pimg.jpg');">
 
         <?php
-include("connection/connect.php"); 
-error_reporting(0); 
-session_start(); 
+
 if(isset($_POST['submit']))  
 {
 	$username = $_POST['username'];  
 	$password = $_POST['password'];
-	
+
 	if(!empty($_POST["submit"]))   
      {
-	$loginquery ="SELECT * FROM users WHERE username='$username' && password='".md5($password)."'"; //selecting matching records
+	$loginquery ="SELECT * FROM users WHERE username='$username' AND password='".md5($password)."'"; //selecting matching records
 	$result=mysqli_query($db, $loginquery); //executing
 	$row=mysqli_fetch_array($result);
-	
+                            
+
 	                        if(is_array($row)) 
 								{
                                     	$_SESSION["user_id"] = $row['u_id']; 
