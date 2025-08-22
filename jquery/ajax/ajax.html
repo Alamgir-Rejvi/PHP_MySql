@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>E-commerce Search Example</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <style>
+    .product { border:1px solid #ccc; padding:10px; margin:5px; }
+    #results { margin-top:20px; }
+  </style>
+</head>
+<body>
+
+<h2>Search Product</h2>
+<input type="text" id="searchBox" placeholder="Type product name...">
+
+<div id="results"></div>
+
+<script>
+$(document).ready(function(){
+
+  // Example Product Data (can come from DB)
+  let products = [
+    {id:1, name:"Laptop", price:850, quantity:10, category:"Electronics"},
+    {id:2, name:"Smartphone", price:500, quantity:25, category:"Electronics"},
+    {id:3, name:"Shoes", price:40, quantity:50, category:"Fashion"},
+    {id:4, name:"Watch", price:120, quantity:15, category:"Accessories"}
+  ];
+
+  // Function to display products
+  function displayResults(filteredProducts){
+    $("#results").empty(); // Clear old results
+    if(filteredProducts.length === 0){
+      $("#results").html("<p>No product found!</p>");
+    } else {
+      $.each(filteredProducts, function(index, product){
+        $("#results").append(`
+          <div class="product">
+            <h3>${product.name}</h3>
+            <p>Price: $${product.price}</p>
+            <p>Quantity: ${product.quantity}</p>
+            <p>Category: ${product.category}</p>
+          </div>
+        `);
+      });
+    }
+  }
+
+  // Initial display (all products)
+  displayResults(products);
+
+  // Search event
+  $("#searchBox").on("keyup", function(){
+    let keyword = $(this).val().toLowerCase();
+    let filtered = products.filter(function(item){
+      return item.name.toLowerCase().includes(keyword);
+    });
+    displayResults(filtered);
+  });
+
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>this is a text</p>
+    <button> Set text content for all p element</button>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        // $('p').text('hello'); // output : hello
+
+        $(document).ready(function(){
+            $("button").click(function(){
+                $("p").html(" <i> hello <i> <b> world! </b>");
+            });
+        }); // now output :hello (in italic font)  world! (in bold font);
+    </script>
+</body>
+</html>

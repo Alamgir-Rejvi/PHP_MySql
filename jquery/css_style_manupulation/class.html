@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>jQuery Class Example</title>
+<style>
+    .red {
+        background-color: red;
+        color: white;
+        padding: 10px;
+    }
+    .big {
+        font-size: 24px;
+    }
+    .active {
+        border: 2px solid blue;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h2 id="myText">Hello World</h2>
+
+<button id="btnAdd">Add Class</button>
+<button id="btnRemove">Remove Class</button>
+<button id="btnToggle">Toggle Class</button>
+<button id="btnCheck">Check Class</button>
+
+<script>
+$(document).ready(function(){
+
+    // 1. Add Class
+    $("#btnAdd").click(function(){
+        $("#myText").addClass("red big");
+    });
+
+    // 2. Remove Class
+    $("#btnRemove").click(function(){
+        $("#myText").removeClass("red big");
+    });
+
+    // 3. Toggle Class (adds if not present, removes if present)
+    $("#btnToggle").click(function(){
+        $("#myText").toggleClass("active");
+    });
+
+    // 4. Check if element has a class
+    $("#btnCheck").click(function(){
+        if($("#myText").hasClass("red")){
+            alert("Element has 'red' class!");
+        } else {
+            alert("Element does not have 'red' class.");
+        }
+    });
+
+});
+</script>
+
+</body>
+</html>
