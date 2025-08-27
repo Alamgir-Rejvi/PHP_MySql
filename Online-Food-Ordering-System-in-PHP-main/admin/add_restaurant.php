@@ -9,15 +9,11 @@ session_start();
 
 
 
+// field validation part ;
 
 if(isset($_POST['submit']))          
 {
 	
-			
-		
-			
-		  
-		
 		
 		if(empty($_POST['c_name'])||empty($_POST['res_name'])||$_POST['email']==''||$_POST['phone']==''||$_POST['url']==''||$_POST['o_hr']==''||$_POST['c_hr']==''||$_POST['o_days']==''||$_POST['address']=='')
 		{	
@@ -32,6 +28,7 @@ if(isset($_POST['submit']))
 	else
 		{
 		
+            // file upload process:
 				$fname = $_FILES['file']['name'];
 								$temp = $_FILES['file']['tmp_name'];
 								$fsize = $_FILES['file']['size'];
@@ -40,7 +37,8 @@ if(isset($_POST['submit']))
 								$fnew = uniqid().'.'.$extension;
    
 								$store = "Res_img/".basename($fnew);                      
-	
+            // checking image file type :
+            
 					if($extension == 'jpg'||$extension == 'png'||$extension == 'gif' )
 					{        
 									if($fsize>=1000000)
@@ -85,27 +83,12 @@ if(isset($_POST['submit']))
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 																<strong>invalid extension!</strong>png, jpg, Gif are accepted.
 															</div>';
-						
 	   
 						}               
 	   
-	   
 	   }
 
-
-
-	
-	
-	
-
 }
-
-
-
-
-
-
-
 
 ?>
   
