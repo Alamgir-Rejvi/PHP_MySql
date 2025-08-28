@@ -171,15 +171,7 @@ if(isset($_POST['submit'] ))
                                 </div>
                                 <form action='' method='post'>
                                     <div class="form-body">
-                                        <!-- /*!
-* Author Name: MH RONY.
-* GigHub Link: https://github.com/dev-mhrony
-* Facebook Link:https://www.facebook.com/dev.mhrony
-* Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com
-* Visit My Website : developerrony.com
 
-*/ -->
                                         <hr>
                                         <div class="row p-t-20">
                                             <div class="col-md-12">
@@ -204,15 +196,7 @@ for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@
 
                 <div class="col-12">
 
-                    <!-- /*!
-* Author Name: MH RONY.
-* GigHub Link: https://github.com/dev-mhrony
-* Facebook Link:https://www.facebook.com/dev.mhrony
-* Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com
-* Visit My Website : developerrony.com
-
-*/ -->
+ 
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Listed Categories</h4>
@@ -230,15 +214,7 @@ for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <!-- /*!
-* Author Name: MH RONY.
-* GigHub Link: https://github.com/dev-mhrony
-* Facebook Link:https://www.facebook.com/dev.mhrony
-* Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com
-* Visit My Website : developerrony.com
 
-*/ -->
 
                                         <?php
 												$sql="SELECT * FROM res_category order by c_id desc";
@@ -272,15 +248,7 @@ for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@
 											?>
 
 
-                                        <!-- /*!
-* Author Name: MH RONY.
-* GigHub Link: https://github.com/dev-mhrony
-* Facebook Link:https://www.facebook.com/dev.mhrony
-* Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com
-* Visit My Website : developerrony.com
 
-*/ -->
                                     </tbody>
                                 </table>
                             </div>
@@ -312,14 +280,5 @@ for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@
     <script src="js/custom.min.js"></script>
 
 </body>
-<!-- /*!
-* Author Name: MH RONY.
-* GigHub Link: https://github.com/dev-mhrony
-* Facebook Link:https://www.facebook.com/dev.mhrony
-* Youtube Link: https://www.youtube.com/channel/UChYhUxkwDNialcxj-OFRcDw
-for any PHP, Laravel, Python, Dart, Flutter work contact me at developer.mhrony@gmail.com
-* Visit My Website : developerrony.com
-
-*/ -->
 
 </html>
