@@ -12,13 +12,6 @@ session_start();
 
 if(isset($_POST['submit']))          
 {
-	
-			
-		
-			
-		  
-		
-		
 		if(empty($_POST['d_name'])||empty($_POST['about'])||$_POST['price']==''||$_POST['res_name']=='')
 		{	
 											$error = 	'<div class="alert alert-danger alert-dismissible fade show">
