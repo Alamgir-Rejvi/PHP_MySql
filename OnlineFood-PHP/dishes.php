@@ -132,7 +132,7 @@ foreach ($_SESSION["cart_item"] as $item)
 										
                                         <div class="form-group row no-gutter">
                                             <div class="col-xs-8">
-                                                 <input type="text" class="form-control b-r-0" value=<?php echo "$".$item["price"]; ?> readonly id="exampleSelect1">
+                                                 <input type="text" class="form-control b-r-0" value=<?php echo "৳".$item["price"]; ?> readonly id="exampleSelect1">
                                                    
                                             </div>
                                             <div class="col-xs-4">
@@ -155,7 +155,7 @@ $item_total += ($item["price"]*$item["quantity"]);
                                 <div class="widget-body">
                                     <div class="price-wrap text-xs-center">
                                         <p>TOTAL</p>
-                                        <h3 class="value"><strong><?php echo "$".$item_total; ?></strong></h3>
+                                        <h3 class="value"><strong><?php echo " ৳ ".$item_total; ?></strong></h3>
                                         <p>Free Delivery!</p>
                                         <?php
                                         if($item_total==0){
